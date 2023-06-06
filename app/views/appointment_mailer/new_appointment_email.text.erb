@@ -1,0 +1,17 @@
+Your Appointment with <%= @appointment.doctor.name %> is confirmed!!
+=====================================================================
+
+Order details
+---------------------------------------------------------------------
+Patient Name: <%= @appointment.user.name %>
+Patient Email: <%= @appointment.user.email %>
+Doctor's Name: <%= @appointment.doctor.name %>
+Doctor's Address: <%= @appointment.doctor.address %>
+Appointment Start Time: <%= @appointment.start_time %>
+
+Message:
+---------------------------------------------------------------------
+
+Your appointment is scheduled with  <%= @appointment.doctor.name %> at <%= @appointment.start_time %>. Please be on time.
+<%= link_to "My Appointments", show_url(:user => @appointment.user) %>
+

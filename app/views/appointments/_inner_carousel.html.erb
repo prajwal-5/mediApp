@@ -1,0 +1,73 @@
+<div class="carousel-inner">
+  <% @available_appointment_slots.each_with_index do |(day, slots), index| %>
+    <% if index == params[:day].to_i %>
+      <div class="carousel-item active">
+        <div class="d-flex align-items-center">
+          <%= image_tag "clock.svg", :class => "my-2 mx-3" %>
+          <p class="m-0 my-2">
+            <strong>
+              Select a time for <span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
+            </strong>
+          </p>
+        </div>
+        <div class="w-100 d-flex flex-wrap justify-content-between text-center m-2 px-2" role="group" aria-label="Basic radio toggle button group">
+          <% slots.each do |slot| %>
+            <%= link_to update_slot_path(:current_doctor => @current_doctor, :slot => slot, :day => index) do %>
+              <div>
+                <% if slot.to_s == @chosen_slot %>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio<%= day.day.to_s + slot.to_s %>" autocomplete="off" checked>
+                <% else %>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio<%= day.day.to_s + slot.to_s %>" autocomplete="off">
+                <% end %>
+                <label class="btn btn-outline-primary my-2 py-2 slot-btn" for="btnradio<%= day.day.to_s + slot.to_s %>"><%= slot.strftime("%I:%M %p") %></label>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="mt-5 w-100 text-center">
+            <p class="font-weight-light text-sm-center">Due to high demand, it is difficult to reschedule
+              appointments. Please book your slot carefully!</p>
+            <% if @chosen_slot %>
+              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
+            <% else %>
+              <%= button_to "Book Appointment", "#", :class => "btn disabled-btn w-100 py-2 btn-secondary", :disabled => "disabled" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="carousel-item">
+        <div class="d-flex align-items-center">
+          <%= image_tag "clock.svg", :class => "my-2 mx-3" %>
+          <p class="m-0 my-2">
+            <strong>
+              Select a time for <span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
+            </strong>
+          </p>
+        </div>
+        <div class="w-100 d-flex flex-wrap justify-content-between text-center m-2 px-2" role="group" aria-label="Basic radio toggle button group">
+          <% slots.each do |slot| %>
+            <%= link_to update_slot_path(:current_doctor => @current_doctor, :slot => slot, :day => index) do %>
+              <div>
+                <% if slot.to_s == @chosen_slot %>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio<%= day.day.to_s + slot.to_s %>" autocomplete="off" checked>
+                <% else %>
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio<%= day.day.to_s + slot.to_s %>" autocomplete="off">
+                <% end %>
+                <label class="btn btn-outline-primary my-2 py-2 slot-btn" for="btnradio<%= day.day.to_s + slot.to_s %>"><%= slot.strftime("%I:%M %p") %></label>
+              </div>
+            <% end %>
+          <% end %>
+          <div class="mt-5 w-100 text-center">
+            <p class="font-weight-light text-sm-center">Due to high demand, it is difficult to reschedule
+              appointments. Please book your slot carefully!</p>
+            <% if @chosen_slot %>
+              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
+            <% else %>
+              <%= button_to "Book Appointment", "#", :class => "btn disabled-btn w-100 py-2 btn-secondary", :disabled => "disabled" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<%= turbo_frame_tag 'book_appointment' do %>
+  <div id="get_email" class="mt-5 d-flex flex-column justify-content-center align-items-center ">
+    <%= image_tag 'stethoscope.svg', :class => 'w-50' %>
+    <%= form_tag(show_path, :method => :post, :class => "mb-3 mt-5 w-100") do %>
+      <%= label_tag("Please enter your Email:") %>
+      <%= email_field_tag(:inputEmail, '', :class => "form-control") %>
+      <%= submit_tag("Submit", :class => "btn btn-primary card-btn w-100 my-3") %>
+    <% end %>
+  </div>
+<% end %>

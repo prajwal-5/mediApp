@@ -1,0 +1,52 @@
+<%= form_with(model: doctor) do |form| %>
+  <% if doctor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+
+      <ul>
+        <% doctor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address, style: "display: block" %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div>
+    <%= form.label :image_url, style: "display: block" %>
+    <%= form.text_field :image_url %>
+  </div>
+
+  <div>
+    <%= form.label :clinic_start_time, style: "display: block" %>
+    <%= form.time_field :clinic_start_time %>
+  </div>
+
+  <div>
+    <%= form.label :clinic_end_time, style: "display: block" %>
+    <%= form.time_field :clinic_end_time %>
+  </div>
+
+  <div>
+    <%= form.label :lunch_start_time, style: "display: block" %>
+    <%= form.time_field :lunch_start_time %>
+  </div>
+
+  <div>
+    <%= form.label :lunch_end_time, style: "display: block" %>
+    <%= form.time_field :lunch_end_time %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

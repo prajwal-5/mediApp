@@ -1,0 +1,47 @@
+<%= turbo_frame_tag 'book_appointment' do %>
+  <div class="turbo_box">
+    <div id="appointment_created" class="mt-5 pt-5 d-flex flex-column align-items-center justify-content-center">
+      <div id="success_card" class="bg-white w-100">
+        <div class="d-flex flex-column align-items-center my-4">
+          <%= image_tag "success.svg" %>
+          <h4 class="text-success">Congratulations</h4>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <h5>Appointment Booked</h5>
+          <div class="d-flex my-3">
+            <%= image_tag "success_calender.svg" %>
+            <h4 class="m-0 ms-3 success-card-text">
+              <strong><%= @time.strftime("%a, %dth %B") %>, <%= @time.strftime("%I:%M %p") %></strong></h4>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-center">
+          <p class="text-secondary">Meeting starts in</p>
+          <h5 class="time-display">
+            <span class="time-card"><%= @days_difference.to_s[0] %></span>
+            <span class="time-card"><%= @days_difference.to_s[1] %></span>
+            :
+            <span class="time-card"><%= @hours_difference.to_s[0] %></span>
+            <span class="time-card"><%= @hours_difference.to_s[1] %></span>
+            :
+            <span class="time-card"><%= @min_difference.to_s[0] %></span>
+            <span class="time-card"><%= @min_difference.to_s[1] %></span>
+            :
+            <span class="time-card"><%= @sec_difference.to_s[0] %></span>
+            <span class="time-card"><%= @sec_difference.to_s[1] %></span>
+          </h5>
+          <p class="text-secondary">
+            <span class="mx-3">Days</span>
+            <span class="mx-3">Hours</span>
+            <span class="mx-3">Mins</span>
+            <span class="mx-3">Secs</span>
+          </p>
+        </div>
+      </div>
+
+      <%= link_to show_path(:user => @current_user), :class => "btn btn-outline-primary w-100 mt-4 appointment-btn" do %>
+        <span>My Appointments</span>
+        <%= image_tag "right_arrow.svg" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

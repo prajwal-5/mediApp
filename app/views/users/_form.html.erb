@@ -1,0 +1,68 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group w-100 mt-3">
+    <%= form.label :name, style: "display: block", :class => "w-100" %>
+    <%= form.text_field :name, :class => "w-100 form-control", placeholder: "Enter Name" %>
+  </div>
+
+  <div class="form-group w-100 my-3">
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email, :class => "w-100 form-control", placeholder: "Enter Email" %>
+  </div>
+
+  <%= turbo_frame_tag 'currency_exchange' do %>
+
+    <div class="d-flex justify-content-between" role="group" aria-label="Basic radio toggle button group">
+      <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "INR") do %>
+        <% if params[:currency] == "INR" %>
+          <%= form.radio_button :currency, "INR", class: "btn-check", checked: true %>
+        <% else %>
+          <%= form.radio_button :currency, "INR", class: "btn-check", checked: true %>
+        <% end %>
+        <%= form.label :INR, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_inr" %>
+      <% end %>
+      <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "USD") do %>
+        <% if params[:currency] == "USD" %>
+          <%= form.radio_button :currency, "USD", class: "btn-check", checked: true %>
+        <% else %>
+          <%= form.radio_button :currency, "USD", class: "btn-check" %>
+        <% end %>
+        <%= form.label :USD, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_usd" %>
+      <% end %>
+      <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "EUR") do %>
+        <% if params[:currency] == "EUR" %>
+          <%= form.radio_button :currency, "EUR", class: "btn-check", checked: true %>
+        <% else %>
+          <%= form.radio_button :currency, "EUR", class: "btn-check" %>
+        <% end %>
+        <%= form.label :EUR, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_eur" %>
+      <% end %>
+    </div>
+
+    <%= form.hidden_field :slot, :value => params[:slot] %>
+    <%= form.hidden_field :current_doctor, :value => params[:current_doctor] %>
+
+    <div class="form-group">
+      <% cost = "500 INR" %>
+      <% if params[:currency] == "USD" %>
+        <% cost = (500 * params[:usd_exchange].to_f).round(2).to_s + " USD" %>
+      <% end %>
+      <% if params[:currency] == "EUR" %>
+        <% cost = (500 * params[:eur_exchange].to_f).round(2).to_s + " EUR" %>
+      <% end %>
+      <%= form.hidden_field :cost, :value => cost %>
+      <%= form.submit class: "btn btn-primary card-btn w-100 my-3", value: "Pay #{cost}", params: params %>
+    </div>
+  <% end %>
+<% end %>

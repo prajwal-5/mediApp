@@ -1,0 +1,33 @@
+<div class="mx-3">
+  <button class="left" data-action="appointment#leftScroll"><%= image_tag "left.svg", :class => "svg" %></button>
+  <div class="scroll-days">
+    <div class="carousel-indicators">
+      <% @available_appointment_slots.each_with_index do |(day, slots), index| %>
+        <% if index == params[:day].to_i %>
+          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to=<%= index %> class="active" aria-current="true" aria-label="Slide <%= index.to_s %>">
+            <div class="day-button">
+              <p class="m-0 date"><%= day.strftime("%a, %dth") %></p>
+              <p class="m-0 mt-1 text-secondary"><%= day.strftime("%b") %></p>
+            </div>
+          </button>
+        <%# elsif index == 1 %>
+<!--          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to=<%#= index %> aria-current="true" aria-label="Slide <%#= index.to_s %>">-->
+<!--            <div class="day-button">-->
+<!--              <p class="m-0 date">Tomorrow, <%#= day.strftime("%a, %dth") %></p>-->
+<!--              <p class="m-0 mt-1 text-secondary"><%#= day.strftime("%b") %></p>-->
+<!--            </div>-->
+<!--          </button>-->
+        <% else %>
+          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to=<%= index %> class="day-button" aria-label="Slide <%= index.to_s %>
+            ">
+            <div class="day-button">
+              <p class="m-0 date"><%= day.strftime("%a, %dth") %></p>
+              <p class="m-0 mt-1 text-secondary"><%= day.strftime("%b") %></p>
+            </div>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <button class="right" data-action="appointment#rightScroll"><%= image_tag "right.svg", :class => "svg" %></button>
+</div>

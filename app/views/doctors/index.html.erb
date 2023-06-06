@@ -1,0 +1,31 @@
+<%= turbo_frame_tag 'book_appointment' do %>
+  <div class="w-100 d-flex justify-content-center">
+    <div id="doctors">
+      <div class="d-flex align-items-center my-4 ms-5 ps-5">
+        <%= image_tag "stethoscope.svg", :class => "ms-3 doctor-img" %>
+        <h4 class="mx-2 my-0">My Doctors</h4>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center ps-5">
+        <% @doctors.each do |doctor| %>
+          <div class="card me-5 my-3">
+            <div class="card-body p-2 d-flex flex-column justify-content-between">
+              <div class="d-flex">
+                <%= image_tag doctor.image_url, :class => "card-img me-3" %>
+                <div class="d-flex flex-column justify-content-center">
+                  <h5 class="card-title"><%= doctor.name %></h5>
+                  <p class="card-text"><%= doctor.address %></p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="card-msg">
+                  <p class="m-0"><strong class="msg-color">Next Available</strong> - <%= @first_available_slot[doctor].strftime("%I:%M %p") %></p>
+                </div>
+                <%= link_to "Book Visit", appointments_path(:current_doctor => doctor, :day => 0), class: "btn btn-primary d-flex align-items-center justify-content-center card-btn" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

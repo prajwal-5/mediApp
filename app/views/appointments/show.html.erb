@@ -1,0 +1,55 @@
+<%= turbo_frame_tag 'book_appointment' do %>
+  <div id="my-appointments" class="mt-5">
+    <h2 class="text-center mb-4">My Appointments</h2>
+    <div class="d-flex flex-wrap justify-content-between">
+      <% @appointments.each do |appointment| %>
+        <div class="appointment-card my-4 p-2 py-4">
+          <div class="d-flex">
+            <%= image_tag appointment.doctor.image_url, :class => "appointment-img" %>
+            <div class="ms-2">
+              <p class="fw-bold m-0 fs-5"><%= appointment.doctor.name %></p>
+              <p class="m-0 mt-1 fs-6 text-secondary"><%= appointment.doctor.address %></p>
+            </div>
+          </div>
+          <div>
+            <p class="text-secondary fs-6 my-3">🗓 Your Consultation Details</p>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex">
+                <%= image_tag "appointment_card_calender.svg", :class => "m-0 me-2" %>
+                <p class="m-0 fw-semibold fs-5"><%= appointment.start_time.strftime("%a, %dth %B") %> </p>
+              </div>
+              <span class="fw-light mx-3" style="color: #D0D0D0;"> | </span>
+              <div class="d-flex">
+                <%= image_tag "small-clock.svg", :class => "m-0 me-2" %>
+                <p class="m-0 fw-semibold fs-5"><%= appointment.start_time.strftime("%I:%M %p") %></p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <p>Download your Invoice</p>
+            <%= link_to "CSV", csv_invoice_path(:appointment => appointment), :target => "_blank", :class => "btn btn-dark invoice-btn" %>
+            <%= link_to "TXT", txt_invoice_path(:appointment => appointment), :target => "_blank", :class => "btn btn-dark invoice-btn mx-3" %>
+            <%= link_to "PDF", pdf_invoice_path(:appointment => appointment), :target => "_blank", :class => "btn btn-dark invoice-btn" %>
+          </div>
+          <div class="mt-5 d-flex justify-content-between amount-box px-3 py-2">
+            <p class="m-0">Amount Paid</p>
+            <p class="time-display m-0"><%= appointment.user.currency %> <%= appointment.cost %></p>
+          </div>
+          <div>
+            <% time_zone_difference = 5.5 * 60 * 60 %>
+            <% time_difference = ((appointment.start_time.to_datetime - DateTime.now) * 24 * 60 * 60) - time_zone_difference %>
+            <% if time_difference > @allowed_cancel_time %>
+              <div class="mt-3 d-flex justify-content-end">
+                <%= link_to "CANCEL", appointment_path(appointment), data: { turbo_method: "delete" }, :class => "btn btn-danger-outline cancel-btn" %>
+              </div>
+            <% else %>
+              <div class="mt-3 d-flex justify-content-end">
+                <button href="#" class="btn" disabled="disabled">CANCEL</button>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

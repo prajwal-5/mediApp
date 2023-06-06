@@ -1,0 +1,16 @@
+
+    Name: peerajwal 
+
+    Email: 19bcs1010@cuchd.in 
+
+    Doctor's Name: Doctor one 
+
+    Doctor's Address: Address one, City1, State1 
+
+    Appointment Date: Wed, 07th June 
+
+    Appointment Start Time: 12:00 PM 
+
+    Appointment Cost: 500.0 INR 
+
+    

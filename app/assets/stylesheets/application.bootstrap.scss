@@ -1,0 +1,338 @@
+@import 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+$font-stack: Inter, sans-serif;
+$background-color: #F9F9FF;
+$text-light-color: #555555;
+$text-available-color: #3BA04C;
+$active-color: #443EFF;
+$active-background-color: #DBDEFF;
+$currency-btn-background-color: #FFFFFF;
+$currency-btn-text-color: #1C1C1C;
+$currency-btn-border-color: #DBDBDB;
+$success-card-color: #542EBF;
+$time-display-color: #443EFF;
+$light-active-color: #DBDEFF;
+$final-amount-color: #6234E7;
+$final-amount-box-color: #E3E3FD;
+$disabled-color: #BDBDBD;
+$cancel-color: #dc3545;
+
+
+body{
+  font: $font-stack;
+  height: 100vh;
+  background: $background-color;
+}
+
+#content{
+  height: 90vh;
+}
+
+#doctors{
+  width: 70%;
+}
+
+#appointment_created{
+  width: 40rem;
+  height: 25rem;
+}
+
+.turbo_box{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#success_card, .appointment-card, .appointment-img, .card-img, #get_email{
+  border-radius: 3%;
+  box-shadow: 0px 4px 6px rgba(65, 52, 146, 0.06), 0px 4px 12px rgba(65, 52, 146, 0.12);
+}
+
+#my-appointments{
+  width: 52rem;
+}
+
+.turbo_slot{
+  width: 90rem;
+}
+
+.doctor-img{
+  height: 2.5rem;
+  width: 2.5rem
+}
+
+.card{
+  width: 23rem;
+  height: 10rem;
+}
+
+.card-img{
+  width: 5rem;
+  height: 5rem;
+}
+
+.card-text{
+  font-weight: 300;
+  color: $text-light-color;
+}
+
+.card-msg{
+  font-size: small;
+  color: $text-light-color;
+}
+
+.msg-color{
+  color: $text-available-color;
+}
+
+.card-btn{
+  width: 10rem;
+  background: $active-color;
+}
+
+#appointment-slot{
+  width: 61%;
+}
+
+#user{
+  width: 55rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_form{
+  width: 35%;
+}
+
+.scroll-days{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+  -webkit-appearance: none;
+  scrollbar-width: none;
+}
+
+.scroll-days::-webkit-scrollbar {
+  display: none;
+}
+
+.left {
+  position: absolute;
+  left: 0;
+  top: 10%;
+  transform: translateY(-50%);
+  z-index: 3;
+  background: transparent;
+  border: none;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+  top: 10%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+}
+
+.svg:hover{
+  filter: brightness(0);
+}
+
+.carousel-indicators{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+  margin-inline: 0rem;
+}
+
+.carousel-indicators::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaa;
+}
+
+.carousel-indicators [data-bs-target]{
+  background: transparent;
+  text-indent: 0px;
+  width: 18rem;
+  height: 5rem;
+  overflow: hidden;
+  margin-inline: 0px;
+  border-bottom: 3px solid $text-light-color;
+}
+
+.carousel-indicators .active{
+  border-bottom: 5px solid $active-color;
+}
+
+.date-msg{
+  color: $active-color;
+}
+
+.carousel-indicators .active .date{
+  font-weight: bold;
+}
+
+.form-control{
+  background: transparent;
+}
+
+.select-btn{
+  width: 5.5rem;
+}
+
+.btn, .btn-primary{
+  background: $active-color;
+}
+
+.select-btn{
+  background: $currency-btn-background-color;
+  color: $currency-btn-text-color;
+  border-color: $currency-btn-border-color;
+}
+
+.btn-check, .btn:hover {
+  color: $active-color;
+  background-color: $active-color;
+  border-color: $active-color;
+}
+
+.btn:focus-visible {
+  color: $active-color;
+  background-color: $active-color;
+  border-color: $active-color;
+  outline: 0;
+  box-shadow: $active-color;
+}
+
+.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active, .btn.show {
+  color: $active-color;
+  background-color: $light-active-color;
+  border-color: $light-active-color;
+  font-weight: bold;
+}
+
+.success-card-text{
+  color: $success-card-color;
+}
+
+.time-card{
+  background: #F5F5F5;
+  border-radius: 30%;
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem;
+}
+
+.time-display{
+  color: $time-display-color;
+  font-weight: bold;
+}
+
+.appointment-btn{
+  background: transparent;
+  color: $time-display-color;
+  border-color: $time-display-color;
+}
+
+.appointment-btn:hover, .appointment-btn:focus-visible{
+  color: $active-color;
+  background-color: $light-active-color;
+  border-color: $light-active-color;
+  font-weight: bold;
+}
+
+.appointment-card{
+  width: 25rem;
+  background: white;
+}
+
+.appointment-img{
+  width: 5rem;
+  height: 5rem;
+}
+
+.invoice-btn{
+  background: black;
+  color: white;
+  padding-inline: 1.5rem;
+}
+
+.invoice-btn:hover, .invoice-btn:focus-visible{
+  background: white;
+  color: black;
+  border-color: black;
+}
+
+.final-amount{
+  color: $final-amount-color;
+}
+
+.amount-box{
+  background: $final-amount-box-color;
+  border-radius: 0.7rem;
+}
+
+.card-btn:hover, .card-btn:focus-visible{
+  background: white;
+  color: $active-color;
+  border-color: $active-color;
+}
+
+.slot-btn{
+  width: 16rem;
+  border-color: $active-color;
+  color: $active-color;
+  background: white;
+}
+
+.slot-btn:hover, .slot-btn:focus-visible{
+  background: $active-color;
+  color: white;
+  border-color: $active-color;
+}
+
+.disabled-btn{
+  background: $disabled-color;
+  color: white;
+  font-weight: bold;
+}
+
+.disabled-btn:hover, .disabled-btn:focus-visible, .disabled-btn:active{
+  background: $disabled-color;
+  border: 1px solid $disabled-color;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+.cancel-btn{
+  background: transparent;
+  border: 2px solid $cancel-color;
+  width: 7rem;
+  color: $cancel-color;
+}
+
+.cancel-btn:hover, .cancel-btn:focus-visible, .cancel-btn:active{
+  background: $cancel-color;
+  color: white;
+  border: 2px solid $cancel-color;
+}
+
+#get_email{
+  width: 20rem;
+  background: white;
+  padding: 2rem;
+
+}

@@ -1,0 +1,16 @@
+<%= turbo_frame_tag 'book_appointment' do %>
+  <div class="turbo_slot d-flex justify-content-center">
+    <div id="appointment-slot" data-controller="appointment">
+      <div class="d-flex justify-content-start mt-5 ps-3">
+        <%= image_tag "appointment_slot.svg" %>
+        <p class="m-0 ms-3">Select a date</p>
+      </div>
+      <div>
+        <div id="carouselIndicators" class="carousel slide">
+          <%= render "day_date_carousel" %>
+          <%= render "inner_carousel" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
