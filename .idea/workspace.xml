@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="" />
+    <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +155,7 @@
       <workItem from="1683525308594" duration="41839000" />
       <workItem from="1683789918068" duration="24000" />
       <workItem from="1683790498055" duration="87753000" />
-      <workItem from="1684995626956" duration="57751000" />
+      <workItem from="1684995626956" duration="58576000" />
     </task>
     <servers />
   </component>

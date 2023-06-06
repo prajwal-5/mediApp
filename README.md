@@ -5,20 +5,31 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
+* Ruby version: ```3.2.0```
 
 * Database creation
+``` 
+All Models:
+* Users: For storing user's Name, Email and Currency Preference
+* Doctors: For storing Doctor's Name, Photo, Address and details.
+* Appointments: For storing the details of appointments such as user_id, doctor_id, start time, end time and all.
+
+Model Architecture: 
+- Doctor has many Appointements
+- User has many Appointments
+- Appointment belongs to Doctor and User
+```
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails db:migrate
+rails db:seed
+```
 
 * Deployment instructions
+```angular2html
+bundle install
+< Database Initialization >
+bin/dev
+```
 
-* ...
