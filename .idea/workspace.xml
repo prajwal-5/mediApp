@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/medi_app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.rspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/scroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/appointment_controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/application/_nav.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.text.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointments/_day_date_carousel.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointments/_inner_carousel.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointments/appointment_created.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/appointments/get_email.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spec/rails_helper.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spec/spec_helper.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
-    </list>
+    <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +151,7 @@
       <workItem from="1683525308594" duration="41839000" />
       <workItem from="1683789918068" duration="24000" />
       <workItem from="1683790498055" duration="87753000" />
-      <workItem from="1684995626956" duration="57428000" />
+      <workItem from="1684995626956" duration="57751000" />
     </task>
     <servers />
   </component>
