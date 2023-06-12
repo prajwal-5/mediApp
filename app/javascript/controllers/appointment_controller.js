@@ -11,9 +11,4 @@ export default class extends Controller {
         const right = document.querySelector(".scroll-days");
         right.scrollBy(500, 0);
     }
-
-    // getActive() {
-    //     var element = document.querySelector('div.carousel-indicators > button.active')
-    //     return element ? element.classList.value : undefined;
-    // }
 }

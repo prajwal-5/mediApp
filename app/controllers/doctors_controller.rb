@@ -3,19 +3,16 @@ class DoctorsController < ApplicationController
 
   # GET /doctors or /doctors.json
 
-  def get_first_available_slot(current_doctor, slot)
-    appointments = AppointmentsController.new
-    appointments.request = request
-    appointments.response = response
-    slots = appointments.get_available_slots(current_doctor.id, slot)
-    slots.values[0][0]
+  def get_first_available_slot(current_doctor)
+    slots = Appointment.get_available_slots(current_doctor)
+    slots.values.first.first
   end
 
   def index
     @doctors = Doctor.all
     @first_available_slot = {}
     @doctors.each do |doctor|
-      @first_available_slot[doctor] = get_first_available_slot(doctor, nil)
+      @first_available_slot[doctor] = get_first_available_slot(doctor)
     end
   end
 

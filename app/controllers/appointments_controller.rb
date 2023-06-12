@@ -1,82 +1,20 @@
-require 'csv'
-
 class AppointmentsController < ApplicationController
   # before_action :set_appointment, only: %i[ show edit update destroy ]
-
+  MIN_IN_HOUR = 60
+  SEC_IN_MIN = 60
+  HOURS_IN_DAY = 24
+  LEAST_DOUBLE_DIGIT = 10
   # GET /appointments or /appointments.json
   def index
     @current_doctor = Doctor.find(params[:current_doctor])
     @previous_appointments = Appointment.select(:start_time).where(doctor_id: @current_doctor.id).flat_map(&:start_time).map(&:to_datetime)
-    @available_appointment_slots = get_available_slots(params[:current_doctor], params[:slot])
+    @available_appointment_slots = Appointment.get_available_slots(@current_doctor)
     @chosen_slot = params[:slot]
-  end
-
-  def get_available_slots( current_doctor, slot)
-    @current_doctor = Doctor.find(current_doctor)
-    @previous_appointments = Appointment.select(:start_time).where(doctor_id: @current_doctor.id).flat_map(&:start_time).map(&:to_datetime)
-    @available_appointment_slots = {}
-    @chosen_slot = slot
-    start_time = @current_doctor.clinic_start_time.to_datetime
-    close_time = @current_doctor.clinic_end_time.to_datetime
-    lunch_start_time = @current_doctor.lunch_start_time.to_datetime
-    lunch_end_time = @current_doctor.lunch_end_time.to_datetime
-    start_date = DateTime.now
-    end_date = start_date + 7
-    hour_step = (1.to_f / 24)
-
-    (start_date..end_date).each do |date|
-      @available_time_slots = []
-      time_zone_difference = 5.5 * 60 * 60
-      start_time.step(close_time, hour_step).each do |time|
-        time = time.change(:year => date.year, :month => date.month, :day => date.day)
-        time_difference = ((time.to_datetime - DateTime.now) * 24 * 60 * 60) - time_zone_difference
-        if time_difference > 0 && ((time.hour < lunch_start_time.hour || time.hour >= lunch_end_time.hour) && time.hour != close_time.hour)
-          @available_time_slots.push(time)
-        end
-      end
-      @available_time_slots -= @previous_appointments #- @available_time_slots
-      if @available_time_slots != []
-        @available_appointment_slots[date] = @available_time_slots
-      end
-    end
-    @available_appointment_slots
   end
 
   def update_slot
     @current_doctor = Doctor.find(params[:current_doctor])
     redirect_to appointments_url(:current_doctor => params[:current_doctor], :slot => params[:slot], :day => params[:day])
-  end
-
-  def csv_invoice
-    appointment = Appointment.find(params[:appointment])
-    headers = ['name', 'email', 'doctor', 'start_time', 'end_time', 'cost']
-
-    csv_data = CSV.generate(headers: true) do |csv|
-      csv << headers
-      csv << [appointment.user.name, appointment.user.email, appointment.doctor.name, appointment.start_time, appointment.end_time, appointment.cost.to_s + " " + appointment.user.currency]
-    end
-
-    file = File.open("invoice.csv", "w+")
-    file.write(csv_data)
-    file.close
-    send_file 'invoice.csv', :type => "application/csv", :x_sendfile => true
-  end
-
-  def txt_invoice
-    appointment = Appointment.find(params[:appointment])
-    txt_data = get_text_data(appointment)
-    file = File.open("invoice.txt", "w+")
-    file.write(txt_data)
-    file.close
-    send_file 'invoice.txt', :type => "application/txt", :x_sendfile => true
-  end
-
-  def pdf_invoice
-    appointment = Appointment.find(params[:appointment])
-    Prawn::Document.generate("invoice.pdf") do |pdf|
-      pdf.text get_text_data(appointment)
-    end
-    send_file 'invoice.pdf', :type => "application/pdf", :x_sendfile => true
   end
 
   # GET /appointments/1 or /appointments/1.json
@@ -88,7 +26,7 @@ class AppointmentsController < ApplicationController
       else
         @appointments = Appointment.joins(:user).where(:users => { :id => current_user })
       end
-      @allowed_cancel_time = 30 * 60 # 30 minutes converted to seconds
+      @allowed_cancel_time = 30.minutes
       respond_to do |format|
         format.html { render :template => "appointments/show" }
       end
@@ -101,31 +39,27 @@ class AppointmentsController < ApplicationController
 
   def appointment_created
     appointment = Appointment.find(params[:appointment])
-    @time = appointment.start_time
+    @time = Time.parse(appointment.start_time.to_s)
     @current_user = User.find(appointment.user_id)
-    time_zone_difference = 5.5 * 60 * 60
-    time_difference = ((@time.to_datetime - DateTime.now) * 24 * 60 * 60) - time_zone_difference
-    @days_difference = (time_difference / (60 * 60 * 24)).to_i
-    time_difference -= (@days_difference * 24 * 60 * 60)
-    @hours_difference = (time_difference / (60 * 60)).to_i
-    time_difference -= (@hours_difference * 60 * 60)
-    @min_difference = (time_difference / 60).to_i
-    time_difference -= (@min_difference * 60)
-    @sec_difference = time_difference.to_i
+    time_difference = @time - Time.now
 
-    if @days_difference < 10
+    @min_difference, @sec_difference = time_difference.divmod(MIN_IN_HOUR)
+    @hours_difference, @min_difference = @min_difference.divmod(SEC_IN_MIN)
+    @days_difference, @hours_difference = @hours_difference.divmod(HOURS_IN_DAY)
+
+    if @days_difference < LEAST_DOUBLE_DIGIT
       @days_difference = "0" + @days_difference.to_s
     end
 
-    if @hours_difference < 10
+    if @hours_difference < LEAST_DOUBLE_DIGIT
       @hours_difference = "0" + @hours_difference.to_s
     end
 
-    if @min_difference < 10
+    if @min_difference < LEAST_DOUBLE_DIGIT
       @min_difference = "0" + @min_difference.to_s
     end
 
-    if @sec_difference < 10
+    if @sec_difference < LEAST_DOUBLE_DIGIT
       @sec_difference = "0" + @sec_difference.to_s
     end
     respond_to do |format|
@@ -173,13 +107,45 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1 or /appointments/1.json
   def destroy
     @appointment = Appointment.find(params[:id])
-    user = User.find(@appointment.user_id)
+    user = @appointment.user
     @appointment.destroy
 
     respond_to do |format|
       format.html { redirect_to show_path(:user => user), notice: "Appointment was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def csv_invoice
+    appointment = Appointment.find(params[:appointment])
+    headers = ['name', 'email', 'doctor', 'start_time', 'end_time', 'cost']
+
+    csv_data = CSV.generate(headers: true) do |csv|
+      csv << headers
+      csv << [appointment.user.name, appointment.user.email, appointment.doctor.name, appointment.start_time, appointment.end_time, appointment.cost.to_s + " " + appointment.user.currency]
+    end
+
+    file = File.open("invoice.csv", "w+")
+    file.write(csv_data)
+    file.close
+    send_file 'invoice.csv', :type => "application/csv", :x_sendfile => true
+  end
+
+  def txt_invoice
+    appointment = Appointment.find(params[:appointment])
+    txt_data = get_text_data(appointment)
+    file = File.open("invoice.txt", "w+")
+    file.write(txt_data)
+    file.close
+    send_file 'invoice.txt', :type => "application/txt", :x_sendfile => true
+  end
+
+  def pdf_invoice
+    appointment = Appointment.find(params[:appointment])
+    Prawn::Document.generate("invoice.pdf") do |pdf|
+      pdf.text get_text_data(appointment)
+    end
+    send_file 'invoice.pdf', :type => "application/pdf", :x_sendfile => true
   end
 
   private

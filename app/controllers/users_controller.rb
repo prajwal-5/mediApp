@@ -3,8 +3,9 @@ require 'json'
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  EMAIL_WAIT_TIME = 2.hours
 
-  # GET /users or /users.json
+    # GET /users or /users.json
   def index
     @users = User.all
   end
@@ -52,17 +53,19 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.find_or_initialize_by(:email => user_params[:email], :name => user_params[:name], :currency => user_params[:currency])
-
+    make_payment
+    @user = User.find_or_initialize_by(:email => user_params[:email])
+    @user.assign_attributes(user_params)
     respond_to do |format|
       if @user.save
         start_time = params[:user][:slot].to_datetime
         end_time = start_time + 1.hour
         current_doctor = params[:user][:current_doctor].to_i
         cost = params[:user][:cost].to_i
-        @appointment = Appointment.new(start_time: start_time.to_s, end_time: end_time, cost: cost, user_id: @user.id, doctor_id: current_doctor)
+        @appointment = Appointment.new(start_time: start_time.to_s, end_time: end_time, cost: cost, user: @user, doctor_id: current_doctor)
         @appointment.save
-        AppointmentMailer.with(appointment: @appointment).new_appointment_email.deliver_now
+
+        AppointmentMailer.with(appointment: @appointment).new_appointment_email.deliver_later(wait_until: (end_time + EMAIL_WAIT_TIME).to_datetime.in_time_zone("Chennai"))
         format.html { redirect_to appointment_created_path(:appointment => @appointment.id), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -105,5 +108,9 @@ class UsersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.require(:user).permit(:name, :email, :currency)
+  end
+
+  def make_payment
+    sleep(1)
   end
 end

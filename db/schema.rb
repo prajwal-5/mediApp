@@ -30,10 +30,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_065749) do
     t.string "name"
     t.text "address"
     t.string "image_url"
-    t.datetime "clinic_start_time", default: "2023-05-17 12:00:00"
-    t.datetime "clinic_end_time", default: "2023-05-17 16:00:00"
-    t.datetime "lunch_start_time", default: "2023-05-17 13:00:00"
-    t.datetime "lunch_end_time", default: "2023-05-17 14:00:00"
+    t.datetime "clinic_start_time"
+    t.datetime "clinic_end_time"
+    t.datetime "lunch_start_time"
+    t.datetime "lunch_end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
