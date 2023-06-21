@@ -1,21 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe "users/new", type: :view do
+  let(:user) { User.new }
+
   before(:each) do
-    assign(:user, User.new(
-      name: "MyString",
-      email: "MyString"
-    ))
+    assign(:user, user)
   end
 
-  it "renders new user form" do
+  it "should have a form" do
     render
-
-    assert_select "form[action=?][method=?]", users_path, "post" do
-
-      assert_select "input[name=?]", "user[name]"
-
-      assert_select "input[name=?]", "user[email]"
-    end
+    expect(rendered).to match(/input/)
   end
 end

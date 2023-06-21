@@ -1,6 +1,6 @@
 <%= turbo_frame_tag 'book_appointment' do %>
   <div id="user">
-    <h4 class="mt-5 text-center">Add Details 🧑🏻</h4>
+    <h4 class="mt-5 text-center"><%= t("addDetails") %> 🧑🏻</h4>
     <div class="user_form">
       <%= render "form", user: @user %>
     </div>

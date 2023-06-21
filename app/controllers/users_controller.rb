@@ -5,21 +5,9 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   EMAIL_WAIT_TIME = 2.hours
 
-    # GET /users or /users.json
-  def index
-    @users = User.all
+  def new
+    @user = User.new
   end
-
-  def get_exchange_rates
-    url = URI.parse('https://api.apilayer.com/fixer/latest?base=INR&symbols=EUR,USD')
-    req = Net::HTTP::Get.new(url)
-    req['apikey'] = ENV.fetch("FIXER_API_KEY")
-    res = Net::HTTP.start(url.hostname, url.port, use_ssl: url.scheme == 'https') { |http|
-      http.request(req)
-    }
-    res.body
-  end
-
   def update_currency
     file = File.open("exchange_rates.json", "a+")
     @exchange_rates = JSON.load(file) || {}
@@ -34,21 +22,8 @@ class UsersController < ApplicationController
     redirect_to new_user_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => params[:currency], :usd_exchange => JSON.parse(@exchange_rates)["rates"]["USD"], :eur_exchange => JSON.parse(@exchange_rates)["rates"]["EUR"])
   end
 
-  # GET /users/1 or /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
   def turbo_form
     render :new, status: :ok
-  end
-
-  # GET /users/1/edit
-  def edit
   end
 
   # POST /users or /users.json
@@ -58,6 +33,7 @@ class UsersController < ApplicationController
     @user.assign_attributes(user_params)
     respond_to do |format|
       if @user.save
+        session[:current_user] = @user
         start_time = params[:user][:slot].to_datetime
         end_time = start_time + 1.hour
         current_doctor = params[:user][:current_doctor].to_i
@@ -75,29 +51,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1 or /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -111,6 +64,19 @@ class UsersController < ApplicationController
   end
 
   def make_payment
-    sleep(1)
+    service = Thread.new do
+      sleep 1
+    end
+    service.join
+  end
+
+  def get_exchange_rates
+    url = URI.parse('https://api.apilayer.com/fixer/latest?base=INR&symbols=EUR,USD')
+    req = Net::HTTP::Get.new(url)
+    req['apikey'] = ENV.fetch("FIXER_API_KEY")
+    res = Net::HTTP.start(url.hostname, url.port, use_ssl: url.scheme == 'https') { |http|
+      http.request(req)
+    }
+    res.body
   end
 end

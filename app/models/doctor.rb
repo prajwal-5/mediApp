@@ -4,9 +4,24 @@ class Doctor < ApplicationRecord
   after_initialize :init
 
   def init
-    self.clinic_start_time ||= Time.zone.parse("2023-5-17 12:00:00")
-    self.clinic_end_time ||= Time.zone.parse("2023-5-17 16:00:00")
-    self.lunch_start_time ||= Time.zone.parse("2023-5-17 13:00:00")
-    self.lunch_end_time ||= Time.zone.parse("2023-5-17 14:00:00")
+    self.clinic_start_time ||= set_date(Time.zone.parse("2023-5-17 12:00:00"))
+    self.clinic_end_time ||= set_date(Time.zone.parse("2023-5-17 16:00:00"))
+    self.lunch_start_time ||= set_date(Time.zone.parse("2023-5-17 13:00:00"))
+    self.lunch_end_time ||= set_date(Time.zone.parse("2023-5-17 14:00:00"))
+  end
+
+  def self.get_first_available_slot(doctors)
+    first_available_slot = {}
+    doctors.each do |doctor|
+      slots = Appointment.get_available_slots(doctor)
+      first_available_slot[doctor] = slots.values.first.first
+    end
+    first_available_slot
+  end
+
+  private
+  def set_date(time)
+    current_date = Time.zone.now
+    time.change(year: current_date.year, month: current_date.month, day: current_date.day)
   end
 end

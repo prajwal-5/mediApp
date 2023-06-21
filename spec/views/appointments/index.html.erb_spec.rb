@@ -1,20 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "appointments/index", type: :view do
-  before(:each) do
-    assign(:appointments, [
-      Appointment.create!(
-        cost: "9.99"
-      ),
-      Appointment.create!(
-        cost: "9.99"
-      )
-    ])
+  before :each do
+    current_doctor = Doctor.new({ name: "Doctor one", address: "Address one, City1, State1", image_url: "doctor1.jpeg" })
+    current_doctor.save
+    assign(:current_doctor, current_doctor)
+    assign(:available_appointment_slots, Appointment.get_available_slots(current_doctor))
+    assign(:slot, nil)
   end
 
-  it "renders a list of appointments" do
+  it 'should check for index view time is rendered' do
     render
-    cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new("9.99".to_s), count: 2
+    expect(rendered).to match(/PM/)
   end
 end

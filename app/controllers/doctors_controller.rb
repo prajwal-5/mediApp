@@ -2,69 +2,9 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[ show edit update destroy ]
 
   # GET /doctors or /doctors.json
-
-  def get_first_available_slot(current_doctor)
-    slots = Appointment.get_available_slots(current_doctor)
-    slots.values.first.first
-  end
-
   def index
     @doctors = Doctor.all
-    @first_available_slot = {}
-    @doctors.each do |doctor|
-      @first_available_slot[doctor] = get_first_available_slot(doctor)
-    end
-  end
-
-  # GET /doctors/1 or /doctors/1.json
-  def show
-  end
-
-  # GET /doctors/new
-  def new
-    @doctor = Doctor.new
-  end
-
-  # GET /doctors/1/edit
-  def edit
-  end
-
-  # POST /doctors or /doctors.json
-  def create
-    @doctor = Doctor.new(doctor_params)
-
-    respond_to do |format|
-      if @doctor.save
-        format.html { redirect_to doctor_url(@doctor), notice: "Doctor was successfully created." }
-        format.json { render :show, status: :created, location: @doctor }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @doctor.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /doctors/1 or /doctors/1.json
-  def update
-    respond_to do |format|
-      if @doctor.update(doctor_params)
-        format.html { redirect_to doctor_url(@doctor), notice: "Doctor was successfully updated." }
-        format.json { render :show, status: :ok, location: @doctor }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @doctor.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /doctors/1 or /doctors/1.json
-  def destroy
-    @doctor.destroy
-
-    respond_to do |format|
-      format.html { redirect_to doctors_url, notice: "Doctor was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @first_available_slot = Doctor.get_first_available_slot(@doctors)
   end
 
   private

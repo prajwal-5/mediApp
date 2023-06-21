@@ -6,7 +6,7 @@
           <%= image_tag "clock.svg", :class => "my-2 mx-3" %>
           <p class="m-0 my-2">
             <strong>
-              Select a time for <span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
+              <%= t("selectTime") %><span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
             </strong>
           </p>
         </div>
@@ -24,8 +24,7 @@
             <% end %>
           <% end %>
           <div class="mt-5 w-100 text-center">
-            <p class="font-weight-light text-sm-center">Due to high demand, it is difficult to reschedule
-              appointments. Please book your slot carefully!</p>
+            <p class="font-weight-light text-sm-center"><%= t("bookSlotCarefully") %></p>
             <% if @chosen_slot %>
               <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
             <% else %>
@@ -40,7 +39,7 @@
           <%= image_tag "clock.svg", :class => "my-2 mx-3" %>
           <p class="m-0 my-2">
             <strong>
-              Select a time for <span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
+              <%= t("selectTime") %><span class="date-msg"><%= day.strftime("%A, %dth %B") %></span>
             </strong>
           </p>
         </div>
@@ -58,8 +57,7 @@
             <% end %>
           <% end %>
           <div class="mt-5 w-100 text-center">
-            <p class="font-weight-light text-sm-center">Due to high demand, it is difficult to reschedule
-              appointments. Please book your slot carefully!</p>
+            <p class="font-weight-light text-sm-center"><%= t("bookSlotCarefully") %></p>
             <% if @chosen_slot %>
               <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
             <% else %>

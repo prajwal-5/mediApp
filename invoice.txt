@@ -3,13 +3,13 @@
 
     Email: 19bcs1010@cuchd.in 
 
-    Doctor's Name: Doctor three 
+    Doctor's Name: Doctor one 
 
-    Doctor's Address: Address three, City3, State3 
+    Doctor's Address: Address one, City1, State1 
 
-    Appointment Date: Fri, 09th June 
+    Appointment Date: Sat, 17th June 
 
-    Appointment Start Time: 12:00 PM 
+    Appointment Start Time: 02:00 PM 
 
     Appointment Cost: 5.0 EUR 
 

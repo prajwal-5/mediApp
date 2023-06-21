@@ -4,18 +4,18 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 </head>
 <body>
-<p>Your Appointment with <%= @appointment.doctor.name %> is confirmed!!</p>
+<p><%= t("appointmentWith") %> <%= @appointment.doctor.name %> <%= t("isConfirmed")%></p>
 <p>
-  Order details<br>
+  <%= t("orderDetails") %><br>
   --------------------------
 </p>
-<p>Patient Name: <%= @appointment.user.name %></p>
-<p>Patient Email: <%= @appointment.user.email %></p>
-<p>Doctor's Name: <%= @appointment.doctor.name %></p>
-<p>Doctor's Address: <%= @appointment.doctor.address %></p>
-<p>Appointment Start Time: <%= @appointment.start_time %></p>
-<p>Your appointment is scheduled with  <%= @appointment.doctor.name %> at <%= @appointment.start_time %>. Please be on time.</p>
-<p>You can check your details here</p>
+<p><%= t("patientName") %> <%= @appointment.user.name %></p>
+<p><%= t("patientEmail") %><%= @appointment.user.email %></p>
+<p><%= t("doctorsName") %><%= @appointment.doctor.name %></p>
+<p><%= t("doctorsAddress") %><%= @appointment.doctor.address %></p>
+<p><%= t("appointmentStartTime") %><%= @appointment.start_time %></p>
+<p><%= t("scheduledWith") %> <%= @appointment.doctor.name %> <%= t("at") %> <%= @appointment.start_time %><%= t("beOnTime") %></p>
+<p><%= t("checkDetailsHere") %></p>
 <%= link_to "My Appointments", show_url(:user => @appointment.user) %>
 </body>
 </html>

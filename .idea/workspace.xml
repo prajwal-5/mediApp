@@ -5,7 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/spec/views/appointments/appointment_created.html.erb_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/appointments_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/doctors_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/doctors_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/user_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/user_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/appointment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/appointment.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/doctor.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/doctor.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/application/_nav.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/application/_nav.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.text.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointment_mailer/new_appointment_email.text.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_appointment.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_day_date_carousel.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_day_date_carousel.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/_inner_carousel.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_inner_carousel.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/appointment_created.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/appointment_created.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/edit.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/new.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/appointments/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/doctors/_doctor.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/doctors/edit.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/doctors/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/doctors/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/doctors/new.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/doctors/show.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/mailer.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/mailer.text.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_loader.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_loader.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_user.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/edit.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/index.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/show.json.jbuilder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/locales/en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/locales/en.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/exchange_rates.json" beforeDir="false" afterPath="$PROJECT_DIR$/exchange_rates.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invoice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/invoice.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invoice.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/invoice.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/invoice.txt" beforeDir="false" afterPath="$PROJECT_DIR$/invoice.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/helpers/appointments_helper_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/helpers/appointments_helper_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/helpers/doctors_helper_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/helpers/doctors_helper_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/helpers/users_helper_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/helpers/users_helper_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/mailers/appointment_mailer_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/mailers/appointment_mailer_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/appointment_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/appointment_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/doctor_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/doctor_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/models/user_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/user_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/appointments_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/appointments_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/doctors_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/doctors_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/requests/users_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/requests/users_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/appointments/edit.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/appointments/index.html.erb_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/views/appointments/index.html.erb_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/appointments/new.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/appointments/show.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/doctors/edit.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/doctors/index.html.erb_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/views/doctors/index.html.erb_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/doctors/new.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/doctors/show.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/users/edit.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/users/index.html.erb_spec.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/users/new.html.erb_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/views/users/new.html.erb_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/views/users/show.html.erb_spec.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,25 +216,11 @@
       <workItem from="1683525308594" duration="41839000" />
       <workItem from="1683789918068" duration="24000" />
       <workItem from="1683790498055" duration="87753000" />
-      <workItem from="1684995626956" duration="59690000" />
+      <workItem from="1684995626956" duration="147947000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/app/controllers/appointments_controller.rb</url>
-          <line>115</line>
-          <properties myBlockOrdinal="-1">
-            <option name="block-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -12,6 +12,10 @@
 .env.local
 .env.staging
 
+*.csv
+*.pdf
+*.txt
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*

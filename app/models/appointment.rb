@@ -5,7 +5,6 @@ class Appointment < ApplicationRecord
   belongs_to :user
 
   def self.get_available_slots(current_doctor)
-    # current_doctor = Doctor.find(current_doctor)
     previous_appointments = Appointment.select(:start_time).where(doctor_id: current_doctor.id).flat_map(&:start_time).map(&:to_datetime)
     available_appointment_slots = {}
     start_time = current_doctor.clinic_start_time.to_datetime

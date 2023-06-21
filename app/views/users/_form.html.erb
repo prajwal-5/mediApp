@@ -67,7 +67,7 @@
           <% cost = (500 * params[:eur_exchange].to_f).round(2).to_s + " EUR" %>
         <% end %>
         <%= form.hidden_field :cost, :value => cost %>
-        <%= form.submit class: "btn btn-primary card-btn w-100 my-3", value: "Pay #{cost}", params: params, data: { "action" => "click->user#loader" } %>
+        <%= form.submit class: "btn btn-primary card-btn w-100 my-3", value: "Pay #{cost}", params: params, data: { "action" => "user#loader" } %>
       </div>
     <% end %>
   <% end %>

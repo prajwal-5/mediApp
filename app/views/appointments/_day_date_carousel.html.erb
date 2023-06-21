@@ -10,13 +10,6 @@
               <p class="m-0 mt-1 text-secondary"><%= day.strftime("%b") %></p>
             </div>
           </button>
-        <%# elsif index == 1 %>
-<!--          <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to=<%#= index %> aria-current="true" aria-label="Slide <%#= index.to_s %>">-->
-<!--            <div class="day-button">-->
-<!--              <p class="m-0 date">Tomorrow, <%#= day.strftime("%a, %dth") %></p>-->
-<!--              <p class="m-0 mt-1 text-secondary"><%#= day.strftime("%b") %></p>-->
-<!--            </div>-->
-<!--          </button>-->
         <% else %>
           <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to=<%= index %> class="day-button" aria-label="Slide <%= index.to_s %>
             ">

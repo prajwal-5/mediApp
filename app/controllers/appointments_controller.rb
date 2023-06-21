@@ -19,13 +19,15 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/1 or /appointments/1.json
   def show
-    if params[:user] || request.method == "POST"
-      current_user = params[:user]
-      if current_user.nil?
-        @appointments = Appointment.joins(:user).where(:users => { :email => params[:inputEmail] })
+    if request.method == "POST" || session[:current_user].present?
+      current_user = session[:current_user]
+      if request.method == "POST"
+        user = User.find_by_email(params[:inputEmail])
       else
-        @appointments = Appointment.joins(:user).where(:users => { :id => current_user })
+        user = User.find(current_user["id"])
       end
+      @appointments = user.present? ? user.appointments : []
+      session[:current_user] = user
       @allowed_cancel_time = 30.minutes
       respond_to do |format|
         format.html { render :template => "appointments/show" }
@@ -39,7 +41,7 @@ class AppointmentsController < ApplicationController
 
   def appointment_created
     appointment = Appointment.find(params[:appointment])
-    @time = Time.parse(appointment.start_time.to_s)
+    @time = appointment.start_time
     @current_user = User.find(appointment.user_id)
     time_difference = @time - Time.now
 
@@ -47,60 +49,13 @@ class AppointmentsController < ApplicationController
     @hours_difference, @min_difference = @min_difference.divmod(SEC_IN_MIN)
     @days_difference, @hours_difference = @hours_difference.divmod(HOURS_IN_DAY)
 
-    if @days_difference < LEAST_DOUBLE_DIGIT
-      @days_difference = "0" + @days_difference.to_s
-    end
+    @days_difference = @days_difference.to_s.rjust(2, '0')
+    @hours_difference = @hours_difference.to_s.rjust(2, '0')
+    @min_difference = @min_difference.to_s.rjust(2, '0')
+    @sec_difference = @sec_difference.to_i.to_s.rjust(2, '0')
 
-    if @hours_difference < LEAST_DOUBLE_DIGIT
-      @hours_difference = "0" + @hours_difference.to_s
-    end
-
-    if @min_difference < LEAST_DOUBLE_DIGIT
-      @min_difference = "0" + @min_difference.to_s
-    end
-
-    if @sec_difference < LEAST_DOUBLE_DIGIT
-      @sec_difference = "0" + @sec_difference.to_s
-    end
     respond_to do |format|
       format.html { render :template => "appointments/appointment_created" }
-    end
-  end
-
-  # GET /appointments/new
-  def new
-    @appointment = Appointment.new
-  end
-
-  # GET /appointments/1/edit
-  def edit
-  end
-
-  # POST /appointments or /appointments.json
-  def create
-    @appointment = Appointment.new(appointment_params)
-
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to appointment_created_path, notice: "Appointment was successfully created." }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /appointments/1 or /appointments/1.json
-  def update
-    respond_to do |format|
-      if @appointment.update(appointment_params)
-        format.html { redirect_to appointment_url(@appointment), notice: "Appointment was successfully updated." }
-        format.json { render :show, status: :ok, location: @appointment }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
     end
   end
 
