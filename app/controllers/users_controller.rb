@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     service = Thread.new do
       sleep 1
     end
-    service.join
+    # service.join
   end
 
   def get_exchange_rates
