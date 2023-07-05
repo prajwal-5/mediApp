@@ -28,27 +28,18 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    make_payment
     @user = User.find_or_initialize_by(:email => user_params[:email])
     @user.assign_attributes(user_params)
-    respond_to do |format|
-      if @user.save
-        session[:current_user] = @user
-        start_time = params[:user][:slot].to_datetime
-        end_time = start_time + 1.hour
-        current_doctor = params[:user][:current_doctor].to_i
-        cost = params[:user][:cost].to_i
-        @appointment = Appointment.new(start_time: start_time.to_s, end_time: end_time, cost: cost, user: @user, doctor_id: current_doctor)
-        @appointment.save
-
-        AppointmentMailer.with(appointment: @appointment).new_appointment_email.deliver_later(wait_until: (end_time + EMAIL_WAIT_TIME).to_datetime.in_time_zone("Chennai"))
-        format.html { redirect_to appointment_created_path(:appointment => @appointment.id), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user.save
+    session[:current_user] = @user
+    start_time = params[:user][:slot].to_datetime
+    end_time = start_time + 1.hour
+    current_doctor = params[:user][:current_doctor].to_i
+    cost = params[:user][:cost].to_i
+    @appointment = Appointment.new(start_time: start_time.to_s, end_time: end_time, cost: cost, user: @user, doctor_id: current_doctor)
+    @appointment.save
+    AppointmentMailer.with(appointment: @appointment).new_appointment_email.deliver_later(wait_until: (end_time + EMAIL_WAIT_TIME).to_datetime.in_time_zone("Chennai"))
+    FakeServiceJob.set(wait: 1.seconds).perform_later(@appointment)
   end
 
   private
@@ -63,12 +54,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :currency)
   end
 
-  def make_payment
-    service = Thread.new do
-      sleep 1
-    end
-    # service.join
-  end
+  # def make_payment
+  # service = Thread.new do
+  #   sleep 1
+  # end
+  # service.join
+  # end
 
   def get_exchange_rates
     url = URI.parse('https://api.apilayer.com/fixer/latest?base=INR&symbols=EUR,USD')

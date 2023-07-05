@@ -39,8 +39,8 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def appointment_created
-    appointment = Appointment.find(params[:appointment])
+  def appointment_created(appointment)
+    # appointment = Appointment.find(params[:appointment])
     @time = appointment.start_time
     @current_user = User.find(appointment.user_id)
     time_difference = @time - Time.now
@@ -54,9 +54,9 @@ class AppointmentsController < ApplicationController
     @min_difference = @min_difference.to_s.rjust(2, '0')
     @sec_difference = @sec_difference.to_i.to_s.rjust(2, '0')
 
-    respond_to do |format|
-      format.html { render :template => "appointments/appointment_created" }
-    end
+    # respond_to do |format|
+    #   format.html { render :template => "appointments/appointment_created" }
+    # end
   end
 
   # DELETE /appointments/1 or /appointments/1.json

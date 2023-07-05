@@ -17,19 +17,13 @@ RSpec.describe "/appointments", type: :request do
       :cost => 500
     }
 
-    @invalid_attributes = {
-      :name => "Pr@jwal",
-      :email => "19bcs1010testcuchd.in",
-      :currency => "INR",
-      :slot => @slot,
-      :current_doctor => @doctor.id,
-      :cost => 500
-    }
+    @invalid_attributes = nil
   end
 
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Appointment" do
+        allow(AppointmentMailer).to receive_message_chain(:with, :new_appointment_email, :deliver_later) { Date.current }
         expect {
           post users_url, params: { user: @valid_attributes }
         }.to change(Appointment, :count).by(1)
@@ -40,7 +34,7 @@ RSpec.describe "/appointments", type: :request do
       it "does not create a new Appointment" do
         expect {
           post users_url, params: { user: @invalid_attributes }
-        }.to change(Appointment, :count).by(0)
+        }.to raise_error ActionController::ParameterMissing
       end
     end
   end

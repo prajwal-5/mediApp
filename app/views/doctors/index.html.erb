@@ -19,7 +19,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="card-msg">
                   <p class="m-0"><strong class="msg-color"><%= t("nextAvailable") %></strong>
-                    - <%= @first_available_slot[doctor].strftime("%I:%M %p") %></p>
+                    - <%= doctor.get_first_available_slot(@doctors)[doctor].strftime("%I:%M %p") %></p>
                 </div>
                 <%= link_to "Book Visit", appointments_path(:current_doctor => doctor, :day => 0), class: "btn btn-primary d-flex align-items-center justify-content-center card-btn" %>
               </div>

@@ -4,7 +4,6 @@ class DoctorsController < ApplicationController
   # GET /doctors or /doctors.json
   def index
     @doctors = Doctor.all
-    @first_available_slot = Doctor.get_first_available_slot(@doctors)
   end
 
   private

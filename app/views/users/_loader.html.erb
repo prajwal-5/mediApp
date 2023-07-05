@@ -1,4 +1,5 @@
-<%= turbo_frame_tag 'book_appointment' do %>
+<%= turbo_stream_from "inbox_list" %>
+<%= turbo_frame_tag 'payment_loader' do %>
   <div class="spinner-border text-primary" role="status">
     <span class="visually-hidden"><%= t("paymentProgress") %></span>
   </div>

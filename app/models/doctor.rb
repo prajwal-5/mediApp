@@ -10,7 +10,7 @@ class Doctor < ApplicationRecord
     self.lunch_end_time ||= set_date(Time.zone.parse("2023-5-17 14:00:00"))
   end
 
-  def self.get_first_available_slot(doctors)
+  def get_first_available_slot(doctors)
     first_available_slot = {}
     doctors.each do |doctor|
       slots = Appointment.get_available_slots(doctor)

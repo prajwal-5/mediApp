@@ -30,7 +30,7 @@ RSpec.describe Doctor, type: :model do
 
   describe 'Get first available slot' do
     it 'should get the default first available slot' do
-      first_available_slots = Doctor.get_first_available_slot(Array.new([@current_doctor]))
+      first_available_slots = @current_doctor.get_first_available_slot(Array.new([@current_doctor]))
       expect(first_available_slots[@current_doctor].hour).to eql START_TIME_HOUR
     end
   end
