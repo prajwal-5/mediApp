@@ -20,27 +20,13 @@ RSpec.describe Appointment, type: :model do
     end
 
     it 'should check no slot is between lunch break' do
-      @available_slots.each do |date, slots|
-        slots.each do |slot|
-          if @current_doctor.lunch_start_time.hour > slot.hour && @current_doctor.lunch_end_time.hour < slot.hour
-            raise "slot time cannot intersect with lunch time"
-          end
-        end
-      end
-    rescue RuntimeError => e
-      expect(e.message).not_to include 'slot time cannot intersect with lunch time'
+      invalid_slots = @available_slots.values.flatten.select { |slot| @current_doctor.lunch_start_time.hour > slot.hour && @current_doctor.lunch_end_time.hour < slot.hour }
+      expect(invalid_slots).to be_empty
     end
 
     it 'should check no slot is after working hours' do
-      @available_slots.each do |date, slots|
-        slots.each do |slot|
-          if @current_doctor.clinic_start_time.hour > slot.hour || @current_doctor.clinic_end_time.hour < slot.hour
-            raise "slot time cannot be after working hours"
-          end
-        end
-      end
-    rescue RuntimeError => e
-      expect(e.message).not_to include 'slot time cannot be after working hours'
+      invalid_slots = @available_slots.values.flatten.select { |slot| @current_doctor.clinic_start_time.hour > slot.hour || @current_doctor.clinic_end_time.hour < slot.hour }
+      expect(invalid_slots).to be_empty
     end
   end
 end

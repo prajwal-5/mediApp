@@ -7,24 +7,47 @@
       </div>
       <div class="d-flex flex-wrap justify-content-center ps-5">
         <% @doctors.each do |doctor| %>
-          <div class="card me-5 my-3">
-            <div class="card-body p-2 d-flex flex-column justify-content-between">
-              <div class="d-flex">
-                <%= image_tag doctor.image_url, :class => "card-img me-3" %>
-                <div class="d-flex flex-column justify-content-center">
-                  <h5 class="card-title"><%= doctor.name %></h5>
-                  <p class="card-text"><%= doctor.address %></p>
+          <% if doctor.availability %>
+            <div class="card me-5 my-3">
+              <div class="card-body p-2 d-flex flex-column justify-content-between">
+                <div class="d-flex">
+                  <%= image_tag doctor.image_url, :class => "card-img me-3" %>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h5 class="card-title"><%= doctor.name %></h5>
+                    <p class="card-text"><%= doctor.address %> <br> <span class="text-primary"><%= doctor.city %></span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="card-msg">
-                  <p class="m-0"><strong class="msg-color"><%= t("nextAvailable") %></strong>
-                    - <%= doctor.get_first_available_slot(@doctors)[doctor].strftime("%I:%M %p") %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="card-msg">
+                    <p class="m-0"><strong class="msg-color"><%= t("nextAvailable") %></strong>
+                      - <%= doctor.get_first_available_slot(@doctors)[doctor].strftime("%I:%M %p") %></p>
+                  </div>
+                  <%= link_to "Book Visit", appointments_path(:current_doctor => doctor, :day => 0), class: "btn btn-primary d-flex align-items-center justify-content-center card-btn" %>
                 </div>
-                <%= link_to "Book Visit", appointments_path(:current_doctor => doctor, :day => 0), class: "btn btn-primary d-flex align-items-center justify-content-center card-btn" %>
               </div>
             </div>
-          </div>
+          <% else %>
+            <div class="card me-5 my-3 bg-light">
+              <div class="card-body p-2 d-flex flex-column justify-content-between">
+                <div class="d-flex">
+                  <%= image_tag doctor.image_url, :class => "card-img me-3 img-disable" %>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h5 class="card-title"><%= doctor.name %></h5>
+                    <p class="card-text"><%= doctor.address %> <br> <span class="text-secondary"><%= doctor.city %></span>
+                    </p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="card-msg">
+                    <p class="m-0"><strong class="text-secondary"><%= t("nextAvailable") %></strong>
+                      - <%= doctor.get_first_available_slot(@doctors)[doctor].strftime("%I:%M %p") %></p>
+                  </div>
+                  <%= link_to "Book Visit", '#', class: "btn card-btn disabled-btn", :disabled => "disabled" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -314,7 +314,7 @@ body{
   text-decoration: none;
   color: white;
   font-weight: bold;
-  padding-bottom: 0.5rem;
+  //padding-bottom: 0.5rem;
 }
 
 .cancel-btn{
@@ -334,5 +334,8 @@ body{
   width: 20rem;
   background: white;
   padding: 2rem;
+}
 
+.img-disable{
+  filter: grayscale(100%);
 }

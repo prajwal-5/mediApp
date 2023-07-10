@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Doctor, type: :model do
   before :all do
     START_TIME_HOUR = 12
-    END_TIME_HOUR =16
+    END_TIME_HOUR = 16
     LUNCH_START_TIME_HOUR = 13
     LUNCH_END_TIME_HOUR = 14
     @current_doctor = Doctor.new({ name: "Doctor one", address: "Address one, City1, State1", image_url: "doctor1.jpeg" })
@@ -31,7 +31,17 @@ RSpec.describe Doctor, type: :model do
   describe 'Get first available slot' do
     it 'should get the default first available slot' do
       first_available_slots = @current_doctor.get_first_available_slot(Array.new([@current_doctor]))
-      expect(first_available_slots[@current_doctor].hour).to eql START_TIME_HOUR
+      current_time = DateTime.now
+      if current_time.hour < 12
+        first_slot = 12
+      elsif current_time.hour < 2
+        first_slot = 14
+      elsif current_time.hour < 3
+        first_slot = 15
+      else
+        first_slot = 12
+      end
+      expect(first_available_slots[@current_doctor].hour).to eql first_slot
     end
   end
 end
