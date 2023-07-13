@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Appointment, type: :model do
   before :all do
-    LAST_SLOT = 3
+    LAST_SLOT = 15
     DAYS_INCLUDING_TODAY = 8
     DAYS_EXCLUDING_TODAY = 7
     ALLOWED_BOOKING_DAYS = (Time.now.hour > LAST_SLOT) ? DAYS_EXCLUDING_TODAY : DAYS_INCLUDING_TODAY

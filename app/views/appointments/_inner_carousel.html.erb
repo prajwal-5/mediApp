@@ -26,7 +26,7 @@
           <div class="mt-5 w-100 text-center">
             <p class="font-weight-light text-sm-center"><%= t("bookSlotCarefully") %></p>
             <% if @chosen_slot %>
-              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
+              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot, :currency => "INR"), :class => "btn btn-secondary card-btn w-100 py-2" %>
             <% else %>
               <%= button_to "Book Appointment", "#", :class => "btn disabled-btn w-100 py-2 btn-secondary", :disabled => "disabled" %>
             <% end %>
@@ -59,7 +59,7 @@
           <div class="mt-5 w-100 text-center">
             <p class="font-weight-light text-sm-center"><%= t("bookSlotCarefully") %></p>
             <% if @chosen_slot %>
-              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot), :class => "btn btn-secondary card-btn w-100 py-2" %>
+              <%= link_to "Book Appointment", new_user_path(:current_doctor => @current_doctor, :slot => @chosen_slot, :currency => "INR"), :class => "btn btn-secondary card-btn w-100 py-2" %>
             <% else %>
               <%= button_to "Book Appointment", "#", :class => "btn disabled-btn w-100 py-2 btn-secondary", :disabled => "disabled" %>
             <% end %>

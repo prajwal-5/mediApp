@@ -30,27 +30,15 @@
 
       <div class="d-flex justify-content-between" role="group" aria-label="Basic radio toggle button group">
         <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "INR") do %>
-          <% if params[:currency] == "INR" %>
-            <%= form.radio_button :currency, "INR", class: "btn-check", checked: true %>
-          <% else %>
-            <%= form.radio_button :currency, "INR", class: "btn-check", checked: true %>
-          <% end %>
+          <%= form.radio_button :currency, "INR", class: "btn-check", checked: params[:currency] == 'INR' %>
           <%= form.label :INR, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_inr" %>
         <% end %>
         <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "USD") do %>
-          <% if params[:currency] == "USD" %>
-            <%= form.radio_button :currency, "USD", class: "btn-check", checked: true %>
-          <% else %>
-            <%= form.radio_button :currency, "USD", class: "btn-check" %>
-          <% end %>
+          <%= form.radio_button :currency, "USD", class: "btn-check", checked: params[:currency] == 'USD' %>
           <%= form.label :USD, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_usd" %>
         <% end %>
         <%= link_to update_currency_path(:current_doctor => params[:current_doctor], :slot => params[:slot], :currency => "EUR") do %>
-          <% if params[:currency] == "EUR" %>
-            <%= form.radio_button :currency, "EUR", class: "btn-check", checked: true %>
-          <% else %>
-            <%= form.radio_button :currency, "EUR", class: "btn-check" %>
-          <% end %>
+          <%= form.radio_button :currency, "EUR", class: "btn-check", checked: params[:currency] == 'EUR' %>
           <%= form.label :EUR, class: "btn btn-outline-primary text-uppercase select-btn", for: "user_currency_eur" %>
         <% end %>
       </div>
