@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5072443c-cfac-4171-82ce-023851f2a796" name="Changes" comment="Remove invoice files">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.bootstrap.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.bootstrap.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/appointment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/appointment.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/doctor.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/doctor.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/appointments/_inner_carousel.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/appointments/_inner_carousel.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/doctors/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/doctors/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/exchange_rates.json" beforeDir="false" afterPath="$PROJECT_DIR$/exchange_rates.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/models/appointment_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/appointment_spec.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/models/doctor_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/models/doctor_spec.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +210,7 @@
       <workItem from="1683789918068" duration="24000" />
       <workItem from="1683790498055" duration="87753000" />
       <workItem from="1684995626956" duration="175369000" />
-      <workItem from="1688100201269" duration="31676000" />
+      <workItem from="1688100201269" duration="32396000" />
     </task>
     <task id="LOCAL-00001" summary="Remove invoice files">
       <created>1687759953294</created>

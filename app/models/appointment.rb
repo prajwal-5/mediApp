@@ -20,7 +20,7 @@ class Appointment < ApplicationRecord
       start_time.step(close_time, hour_step).each do |time|
         time = time.change(:year => date.year, :month => date.month, :day => date.day)
         time_difference = ((time.to_datetime - DateTime.now) * 24 * 60 * 60)
-        if time_difference > 0 && ((time.hour < lunch_start_time.hour || time.hour >= lunch_end_time.hour) && time.hour != close_time.hour)
+        if time.wday!=0 && time_difference > 0 && ((time.hour < lunch_start_time.hour || time.hour >= lunch_end_time.hour) && time.hour != close_time.hour)
           available_time_slots.push(time)
         end
       end
